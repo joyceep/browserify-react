@@ -11,7 +11,9 @@ var Backbone = require('backbone');
 var Router = require('./router.js');
 var TweetList = require('./ui/TweetList.js');
 var Tweets = require('./collections/Tweets.js');
+var TweetCreator = require('./ui/CreateTweet.js');
 
+var radio = require('radio');
 /** assign Backbone.$ manually */
 Backbone.$ = $;
 
@@ -25,7 +27,9 @@ var TwitterClient = React.createClass({
   componentDidMount: function () {
     var router = new Router({ TwitterClient: this });
     Backbone.history.start();
-
+    radio('new-tweet').subscribe(function (tweet) {
+      this.props.tweets.add(tweet);
+    }.bind(this));
     // do collection fetch here
   },
 
@@ -46,7 +50,7 @@ var TwitterClient = React.createClass({
       </div>
 
       <div className="col-lg-5">
-      <p>Tweet Handler Goes Here</p>
+        <TweetCreator />
       </div>
 
       </div>
