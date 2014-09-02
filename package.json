@@ -2,7 +2,8 @@
   "name": "react-sample",
   "version": "0.0.0",
   "dependencies": {
-    "backbone": "^1.1.2"
+    "backbone": "^1.1.2",
+    "jquery": "^2.1.1"
   },
   "devDependencies": {
     "gulp": "*",

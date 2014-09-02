@@ -6,9 +6,21 @@ var React = require('react');
 var Tweet = require('./Tweet.js');
 
 var TweetList = React.createClass({
+
+  componentDidMount: function () {
+
+    this.props.tweets.on('add remove reset', function () {
+      console.log('triggered listener');
+      this.forceUpdate();
+    }.bind(this));
+  },
+
   render: function () {
     var sampleStatus = "javascript, it's the best!";
-    var tweets = <Tweet name="gerard" status={sampleStatus} tweetId="1" isFavorited="false" />
+    var tweets = this.props.tweets.map(function (tweet) {
+      return <Tweet name={tweet.get('name')} status={tweet.get('status')} tweetId={tweet.get('id')} isFavorited={tweet.get('isFavorited')} />
+    });
+
     return (
       <section className="tweetlist">{tweets}</section>
     );
