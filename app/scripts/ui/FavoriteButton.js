@@ -3,6 +3,7 @@
 'use strict';
 
 var React = require('react');
+var radio = require('radio');
 
 var FavoriteButton = React.createClass({
   getInitialState: function () {
@@ -11,6 +12,7 @@ var FavoriteButton = React.createClass({
 
   handleClick: function () {
     this.setState({ isFavorited: !this.state.isFavorited });
+    radio('sample').broadcast({alahu: 'akbar'});
   },
 
   componentDidMount: function () {

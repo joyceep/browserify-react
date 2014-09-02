@@ -4,11 +4,16 @@
 
 var React = require('react');
 var FavoriteButton = require('./FavoriteButton.js');
-
+var radio = require('radio');
 var Tweet = React.createClass({
 
-  render: function () {
+  componentDidMount: function () {
+    radio('sample').subscribe(function (data) {
+      console.log('subscribed', data);
+    });
+  },
 
+  render: function () {
     return (
       <article data-tweet-id={this.props.tweetId}>
         <h4>{this.props.name}</h4>
