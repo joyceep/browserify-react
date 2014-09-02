@@ -11,13 +11,14 @@ var FavoriteButton = React.createClass({
   },
 
   handleClick: function () {
+
     this.setState({ isFavorited: !this.state.isFavorited });
-    radio('sample').broadcast({alahu: 'akbar'});
+    this.props.model.set('isFavorited', !this.state.isFavorited);
   },
 
   componentDidMount: function () {
     // set initial state on mount
-    this.setState({ isFavorited: this.props.isFavorited });
+    this.setState({ isFavorited: this.props.model.get('isFavorited') });
   },
 
   render: function () {
